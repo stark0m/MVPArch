@@ -19,13 +19,13 @@ class MainActivity : AppCompatActivity(), MainView {
 
         with(binding) {
             btnNumber1.setOnClickListener {
-                presenter.onCounterClick(R.id.btnNumber1)
+                presenter.onCounterClick(MainActivityButtonsEnum.FIRST)
             }
             btnNumber2.setOnClickListener {
-                presenter.onCounterClick(R.id.btnNumber2)
+                presenter.onCounterClick(MainActivityButtonsEnum.SECOND)
             }
             btnNumber3.setOnClickListener {
-                presenter.onCounterClick(R.id.btnNumber3)
+                presenter.onCounterClick(MainActivityButtonsEnum.THIRD)
             }
         }
     }
@@ -34,12 +34,15 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter = CountersPresenter(this)
     }
 
-    override fun setText(counter: String, position: Int) {
+    override fun setText(counter: String, position: MainActivityButtonsEnum) {
         with(binding) {
             when (position) {
-                0 -> tvText1.text = counter
-                1 -> tvText2.text = counter
-                2 -> tvText3.text = counter
+                MainActivityButtonsEnum.FIRST -> tvText1.text = counter
+                MainActivityButtonsEnum.SECOND -> tvText2.text = counter
+                MainActivityButtonsEnum.THIRD -> tvText3.text = counter
+                else -> {
+                    //do nothing
+                }
             }
         }
     }
